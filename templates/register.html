@@ -3,7 +3,84 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="h2">注册</div>
+        <form method="POST" action="" class="col-md-6">
+            {{ form.hidden_tag() }}
+            <div class="form-group lead">
+                今天就注册吧~
+            </div>
+            <!-- 用户名 -->
+            <div class="form-group">
+                {{ form.username.label }}
+
+                {% if form.username.errors %}
+                {{ form.username(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+
+            </div>
+            <!-- 邮箱 -->
+            <div class="form-group">
+                {{ form.email.label }}
+
+                {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+            </div>
+            <!-- 密码 -->
+            <div class="form-group">
+                {{ form.password.label }}
+
+                {% if form.password.errors %}
+                {{ form.password(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+            </div>
+            <!-- 密码确认 -->
+            <div class="form-group">
+                {{ form.confirm_password.label }}
+
+                {% if form.confirm_password.errors %}
+                {{ form.confirm_password(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.confirm_password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.confirm_password(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+            </div>
+            <!-- 提交 -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-default") }}
+            </div>
+            <!-- 登陆 -->
+            <div>
+                <span class="small">
+                    已经有账号了请<a href="{{ url_for('login') }}">登陆</a>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
+
 {% endblock content %}

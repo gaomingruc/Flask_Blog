@@ -1,5 +1,8 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = "f79d917aebac39316c419e53d0721f70"
 
 
 @app.route('/base')
@@ -18,16 +21,24 @@ def index():
 @app.route('/about')
 def about():
     """关于"""
-    return render_template("about.html")
+    return render_template("about.html", title="关于")
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
     """登陆"""
-    return render_template("login.html")
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash("%s的账户登陆成功" % form.email.data, "success")
+        return redirect(url_for("index"))
+    return render_template("login.html", title="登陆", form=form)
 
 
-@app.route('/register')
+@app.route('/register', methods=["GET", "POST"])
 def register():
     """注册"""
-    return render_template("register.html")
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash("%s的账户创建成功" % form.username.data, "success")
+        return redirect(url_for("index"))
+    return render_template("register.html", title="注册", form=form)

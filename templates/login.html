@@ -3,7 +3,63 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="h2">登陆</div>
+        <form method="POST" action="" class="col-md-6">
+            {{ form.hidden_tag() }}
+            <div class="form-group lead">
+                欢迎登陆~
+            </div>
+            <!-- 邮箱 -->
+            <div class="form-group">
+                {{ form.email.label }}
+
+                {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+            </div>
+            <!-- 密码 -->
+            <div class="form-group">
+                {{ form.password.label }}
+
+                {% if form.password.errors %}
+                {{ form.password(class="form-control is-invalid", placeholder="请输入用户名") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control", placeholder="请输入用户名") }}
+                {% endif %}
+            </div>
+            <!-- 记住我 -->
+            <div class="form-group">
+                {{ form.remember }}
+                {{ form.remember.label }}
+            </div>
+            <!-- 提交 -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-default") }}
+            </div>
+            <!-- 注册 -->
+            <div>
+                <span class="small">
+                    还没有账号请<a href="{{ url_for('register') }}">注册</a>
+                </span>
+            </div>
+            <!-- 忘记密码 -->
+            <div>
+                <span class="small text-muted">
+                    <a href="#">忘记密码？</a>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock content %}

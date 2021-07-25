@@ -2,3 +2,9 @@
 body {
     padding-top: 70px;
 }
+
+/* 注册页面错误输入 */
+.invalid-feedback {
+    color: red;
+    font-size: small;
+}
