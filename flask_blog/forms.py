@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from flask_wtf.recaptcha import validators
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_blog.models import User
 
@@ -52,3 +52,9 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError("邮箱已存在，请换一个邮箱")
+
+
+class PostForm(FlaskForm):
+    title = StringField("标题", validators=[DataRequired()])
+    content = TextAreaField("内容", validators=[DataRequired()])
+    submit = SubmitField("发送")

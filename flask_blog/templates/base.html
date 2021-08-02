@@ -44,10 +44,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('index') }}">主页</a></li>
+                    <li><a href="{{ url_for('new_post') }}">发博客</a></li>
                     <li><a href="{{ url_for('about') }}">关于</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('account') }}"><img
+                                src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}"
+                                alt="用户头像" class="img-rounded" style="height: 16px;"></a></li>
                     <li><a href="{{ url_for('account') }}">账户</a></li>
                     <li><a href="{{ url_for('logout') }}">登出</a></li>
                     {% else %}
