@@ -12,8 +12,12 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <img src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"
-                                alt="用户头像" class="img-circle" style="height: 40px;">
-                            <span>{{ post.author.username }}</span>
+                                alt="用户头像" class="img-circle" style="height: 20px;">
+                            <span>
+                                <a href="{{ url_for('user_post', username=post.author.username) }}">
+                                    {{ post.author.username }}
+                                </a>
+                            </span>
                             <span>{{ post.date_posted.strftime("%Y-%m-%d, %H:%M:%S") }}</span>
                         </h3>
                     </div>
